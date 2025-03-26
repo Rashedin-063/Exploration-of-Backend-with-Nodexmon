@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const bodyParser = require('body-parser');
+
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 // query
 // app.get('/', (req, res) => {
@@ -25,6 +30,13 @@ app.get('/', (req, res) => {
   
   
   res.send(`<h1>Student name is ${name} and his id is ${id}</h1>`);
+})
+
+
+app.post('/user', (req, res) => {
+  const { name, age } = req.body;
+
+  res.send(`Welcome Mr. ${name} with ${age} years old`)
 })
 
 app.listen(PORT, () => {
