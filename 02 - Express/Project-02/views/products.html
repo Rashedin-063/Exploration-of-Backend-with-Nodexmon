@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
+  <title>Products</title>
   <style>
     body {
       display: flex;
@@ -49,17 +49,17 @@
 </head>
 <body>
   
-  <h1>Add User</h1>
-  <form action="/users" method="POST">
+  <h1>Add Product</h1>
+  <form action="/products" method="POST">
    <div>
      <label for="Name">Name</label>
-   <input type='text' name='name' placeholder='Enter your name'/>
+   <input type='text' name='name' placeholder='Enter product name'/>
    </div>
    <div>
-     <label for="email">Email</label>
-    <input type="email" id="email" name="email" id="email" required>
+     <label for="price">Price</label>
+    <input type="number" id="price" name="price" id="price" placeholder='Enter product price'>
    </div>
-   <button type="submit">Add User</button>
+   <button type="submit">Add Product</button>
   </form>
 </body>
 </html>
