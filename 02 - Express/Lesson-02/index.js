@@ -32,12 +32,29 @@ app.get('/', (req, res) => {
   res.send(`<h1>Student name is ${name} and his id is ${id}</h1>`);
 })
 
+app.get('/register', (req, res) => {
 
-app.post('/user', (req, res) => {
-  const { name, age } = req.body;
-
-  res.send(`Welcome Mr. ${name} with ${age} years old`)
+  res.sendFile(__dirname + '/views/index.html');
 })
+
+app.post('/register', (req, res) => {
+
+    const { fullName, email } = req.body;
+
+    // console.log(fullName, email);
+    // console.log('req body', req.body);
+
+ res.send(`<h1>Student name is ${fullName} and his email is ${email}`)
+})
+
+
+// getting data from req.body using body parser
+
+// app.post('/user', (req, res) => {
+//   const { name, age } = req.body;
+
+//   res.send(`Welcome Mr. ${name} with ${age} years old`)
+// })
 
 app.listen(PORT, () => {
   console.log(`Server is running at https://localhost:${PORT}`);
