@@ -23,11 +23,10 @@ const updateUser = (req, res) => {
   const { username, email } = req.body;
   
   let selectedUser = users.find(user => user.id === id);
-  selectedUser = {
-    id,
-    username,
-    email,
-  };
+ if (selectedUser) {
+   selectedUser.username = username;
+   selectedUser.email = email;
+ }
 
   // users.filter((user) => user.id === id).map(selectedUser => {
   //   selectedUser.username = username;
