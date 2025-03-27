@@ -3,7 +3,7 @@ const { getUsers, saveUser } = require('../controllers/users.controller');
 const router = express.Router();
 
 
-router.get('/', getUsers);
+router.get('/users', getUsers);
 router.post('/users', saveUser);
 
 
