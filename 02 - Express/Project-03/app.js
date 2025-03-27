@@ -10,7 +10,7 @@ app.use(cors());
 
 app.use(express.static('public'))
 
-app.use(userRouter)
+app.use('/users',userRouter)
 
 // home route
 app.get('/', (req, res) => {
