@@ -12,4 +12,5 @@
      - Lesson 5 --> middleware - express.static
 
      - Project 1 --> Area Calculator
-     - Project 2 --> MVC Architecture
+     - Project 2 --> MVC Architecture, CORS
+     - Project 3 --> REST API without Database
