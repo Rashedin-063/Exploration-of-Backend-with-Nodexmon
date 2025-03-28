@@ -1,16 +1,30 @@
 const User = require('../models/user.model')
 const { v4: uuidv4 } = require('uuid');
 
-const getAllUsers = (req, res) => {
-  res.status(200).json({
-    message: 'All users',
-  });
+// get all users
+const getAllUsers = async(req, res) => {
+
+ try {
+   const users = await User.find();
+
+   res.status(200).json(users);
+ } catch (error) {
+  res.status(500).send(error.message)
+ }
 };
-const getSingleUser = (req, res) => {
+
+// get single user by id
+const getSingleUser = async(req, res) => {
   const { id } = req.params;
-  res.status(200).json({
-    message: `User ${id} found`,
-  });
+
+  try {
+    const user = await User.find({ id: id })
+     res.status(200).json(user);
+  } catch (error) {
+      res.status(500).send(error.message);
+  }
+
+ 
 };
 const createUser = async (req, res) => {
  try {
