@@ -18,7 +18,7 @@ const getSingleUser = async(req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await User.find({ id: id })
+    const user = await User.findOne({ id: id })
      res.status(200).json(user);
   } catch (error) {
       res.status(500).send(error.message);
@@ -26,6 +26,7 @@ const getSingleUser = async(req, res) => {
 
  
 };
+
 const createUser = async (req, res) => {
  try {
    const newUser = new User({
@@ -41,17 +42,34 @@ const createUser = async (req, res) => {
   res.status(500).send(error.message)
  }
 };
-const updateUser = (req, res) => {
-    const { id } = req.params;
-  res.status(200).json({
-    message: `User ${id} updated successfully`,
-  });
+
+// update user
+const updateUser = async(req, res) => {
+  const { id } = req.params;
+  const { name, email} = req.body;
+
+ try {
+   const user = await User.findByIdAndUpdate(
+     id,
+     { $set: { name: name, email: email } },
+     { new: true }
+   );
+   res.status(200).json(user);
+ } catch (error) {
+   res.status(500).send(error.message);
+ }
 };
-const deleteUser = (req, res) => {
-    const { id } = req.params;
-  res.status(200).json({
-    message: `User ${id} deleted successfully`,
-  });
+
+// delete a user
+const deleteUser = async(req, res) => {
+   const { id } = req.params;
+
+   try {
+     await User.deleteOne({ id: id });
+     res.status(200).json({message: 'User is deleted successfully'});
+   } catch (error) {
+     res.status(500).send(error.message);
+   }
 };
 
 
