@@ -6,7 +6,7 @@ const dev = {
     port: process.env.PORT || 4000
   },
   db: {
-    url : process.env.MONGODB_URI || 'mongodb://localhost:27017/userDemoDB'
+    uri : process.env.MONGODB_URI || 'mongodb://localhost:27017/userDemoDB'
   }
 }
 
