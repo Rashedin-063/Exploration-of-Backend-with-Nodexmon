@@ -24,7 +24,7 @@ async function run() {
     );
   } finally {
     // Ensures that the client will close when you finish/error
-    await mongoose.disconnect();
+    // await mongoose.disconnect();
   }
 }
 run().catch(console.dir);
