@@ -15,7 +15,7 @@ app.use(express.static('public'))
 // api/users : POST
 // api/users/:id : PATCH
 // api/users/:id : DELETE
-app.use('/users', userRouter)
+app.use('/api/users', userRouter)
 
 
 // home route
