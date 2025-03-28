@@ -3,10 +3,7 @@ const app = require('./app')
 const PORT = process.env.PORT || 3000;
 
 
-// home route
-app.get('/', (req, res) => {
-  res.send(`<h1>Welcome to My API</h1> <p>Version: ${process.env.API_VERSION}</p>`);
-});
+
 
 // invalid route
 app.use((req, res, next) => {
