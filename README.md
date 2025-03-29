@@ -10,7 +10,7 @@
      - Lesson 3 --> regular expression, environment variables
      - Lesson 4 --> middlewares
      - Lesson 5 --> middleware - express.static
-     - Lesson 6 --> uploading image/video to mongodb
+     - Lesson 6 --> file upload
 
      - Project 1 --> Area Calculator
      - Project 2 --> MVC Architecture, CORS
