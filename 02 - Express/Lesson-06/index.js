@@ -26,13 +26,13 @@ app.get('/', (req, res) => {
   `);
 });
 
-app.router('/register')
+app.route('/register')
   .get( (req, res) => {
   // res.send('<h1>Welcome to my server from register</h1>');
   res.status(200).sendFile(__dirname + '/index.html')
   })
   .post((req, res) => {
-  res.send({message: 'something'})
+  res.send({message: 'error solved'})
 })
 
 app.listen(PORT, () => {
