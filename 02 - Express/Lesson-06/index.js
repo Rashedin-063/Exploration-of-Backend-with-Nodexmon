@@ -8,11 +8,11 @@ const PORT = 3000;
 // file upload
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/tmp/my-uploads');
+    cb(null, 'uploads/');
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + '-' + uniqueSuffix);
+    const name = Date.now() + "-" + file.originalname;
+    cb(null, name);
   },
 });
 
@@ -32,7 +32,7 @@ app.route('/register')
   res.status(200).sendFile(__dirname + '/index.html')
   })
   .post((req, res) => {
-  res.send({message: 'error solved'})
+  res.send({message: 'file is uploaded successfully'})
 })
 
 app.listen(PORT, () => {
