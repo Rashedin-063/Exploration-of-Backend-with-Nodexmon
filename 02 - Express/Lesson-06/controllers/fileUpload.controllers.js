@@ -18,11 +18,16 @@ const formRoute = (req, res) => {
   res.status(200).sendFile(path.join(__dirname + '/../views/index.html'));
 };
 
-const uploadFile =
-  (upload.single('image'),
-  (req, res) => {
-    res.send({ message: 'file uploaded successfully' });
+const uploadFile = (req, res) => {
+  upload.single('image')(req, res, function (err) {
+    if (err) {
+      return res
+        .status(400)
+        .send({ message: 'File upload failed', error: err.message });
+    }
+    res.send({ message: 'File uploaded successfully' });
   });
+};
 
 
 
