@@ -11,6 +11,7 @@
      - Lesson 4 --> middlewares
      - Lesson 5 --> middleware - express.static
      - Lesson 6 --> file upload
+     - Lesson 7 --> file upload in database
      
 
      - Project 1 --> Area Calculator
