@@ -26,7 +26,7 @@
     }
 
     input {
-      width: 100%;
+      width: 50%;
       padding: 10px;
       margin-bottom: 20px;
       border-radius: 5px;
@@ -39,13 +39,18 @@
       color: white;
       cursor: pointer;
     }
+
+    #file-input{
+      border: 2px solid rebeccapurple;
+    }
   </style>
 
 </head>
 <body>
 <div>
    <form method="post" action="/register" enctype="multipart/form-data">
-  <input type="file" name="image" id="">
+  <input type="text" name="name" placeholder="Enter your name">
+  <input type="file" name="image" id="file-input" >
   <button type="submit">Register</button>
  </form> 
 </div>
