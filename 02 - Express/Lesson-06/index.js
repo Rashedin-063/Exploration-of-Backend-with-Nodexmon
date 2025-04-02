@@ -25,9 +25,14 @@ app.get('/', (req, res) => {
     </div>
   `);
 });
-app.get('/register', (req, res) => {
+
+app.router('/register')
+  .get( (req, res) => {
   // res.send('<h1>Welcome to my server from register</h1>');
   res.status(200).sendFile(__dirname + '/index.html')
+  })
+  .post((req, res) => {
+  res.send({message: 'something'})
 })
 
 app.listen(PORT, () => {
