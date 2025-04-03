@@ -12,6 +12,7 @@
      - Lesson 5 --> middleware - express.static
      - Lesson 6 --> file upload
      - Lesson 7 --> file upload in database
+     - Lesson 8 --> morgan and chalk npm package
      
 
      - Project 1 --> Area Calculator
