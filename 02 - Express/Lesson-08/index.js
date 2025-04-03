@@ -11,6 +11,12 @@ console.log(chalk.green('Success!'));
 
 console.log(chalk.redBright('This is red console'))
 
+const error = chalk.bold.red;
+const warning = chalk.hex('#FFA500'); // Orange color
+
+console.log(error('Error!'));
+console.log(warning('Warning!'));
+
 
 
 app.get('/', (req, res) => {
@@ -29,6 +35,6 @@ app.get('/products', (req, res) => {
 // })
 
 app.listen(PORT, () => {
-  console.log(`The Server is Running at ${PORT}`);
+  console.log(chalk.greenBright.bgRedBright.underline.bold(`The Server is Running at ${PORT}`));
   
 })
