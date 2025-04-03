@@ -4,13 +4,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node --watch index.js"
+    "start": "node --watch index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "chalk": "^4.1.2",
     "express": "^5.1.0",
     "morgan": "^1.10.0"
   }

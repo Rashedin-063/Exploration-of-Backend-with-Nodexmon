@@ -2,9 +2,15 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const morgan = require('morgan');
+const chalk = require('chalk');
 
 
 app.use(morgan('dev'))
+
+console.log(chalk.green('Success!'));
+
+console.log(chalk.redBright('This is red console'))
+
 
 
 app.get('/', (req, res) => {
@@ -18,9 +24,9 @@ app.get('/', (req, res) => {
 app.get('/products', (req, res) => {
   res.send("List all the products")
 })
-app.post('/products', (req, res) => {
-  res.status(201).send("new product created successfully")
-})
+// app.post('/products', (req, res) => {
+//   res.status(201).send("new product created successfully")
+// })
 
 app.listen(PORT, () => {
   console.log(`The Server is Running at ${PORT}`);
