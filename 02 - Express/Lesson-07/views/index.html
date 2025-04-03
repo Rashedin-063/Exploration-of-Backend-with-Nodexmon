@@ -25,6 +25,14 @@
       align-items: center;
     }
 
+    form {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-width: 600px;
+    }
+
     input {
       width: 50%;
       padding: 10px;
@@ -33,7 +41,8 @@
     }
 
     button {
-      padding: 10px 20px;
+      width: 54%;
+      padding: 10px;
       border-radius: 5px;
       background-color: #1e04b3;
       color: white;
@@ -49,7 +58,7 @@
 <body>
 <div>
    <form method="post" action="/register" enctype="multipart/form-data">
-
+<input type="text" name="name" placeholder="Enter your name">
   <input type="file" name="image" id="file-input" >
   <button type="submit">Register</button>
  </form> 

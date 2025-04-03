@@ -3,6 +3,9 @@ const app = express();
 const PORT = 3000;
 const fileUploadRouter = require('./routes/fileUpload.route');
 const connectDB = require('./utilities/connectDB');
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
  
 
 
