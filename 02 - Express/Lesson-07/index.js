@@ -1,10 +1,9 @@
 const express = require('express');
-
 const app = express();
 const PORT = 3000;
-
 const fileUploadRouter = require('./routes/fileUpload.route')
 
+console.log('updated')
 
 
 app.get('/', (req, res) => {
