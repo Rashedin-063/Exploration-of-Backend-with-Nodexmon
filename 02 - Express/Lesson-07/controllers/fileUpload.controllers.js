@@ -1,4 +1,5 @@
 const path = require('path');
+const User = require('../models/fileUpload.models');
 
 
 const formRoute = (req, res) => {
@@ -7,13 +8,14 @@ const formRoute = (req, res) => {
 
 const uploadFile = async(req, res) => {
   try {
-    const newUser = {
+    const newUser = new User({
       name: req.body.name,
       image: req.file.filename
-    }
-  res.status(201).send({ message: 'File uploaded successfully' });
+    })
+    await newUser.save()
+  res.status(201).send(newUser);
  } catch (error) {
-  
+  res.status(500).send(error.message);
  }
 };
 
