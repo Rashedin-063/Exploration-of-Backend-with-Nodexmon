@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const fileUploadRouter = require('./routes/fileUpload.route')
-
-console.log('updated')
+const fileUploadRouter = require('./routes/fileUpload.route');
+const connectDB = require('./utilities/connectDB');
+ 
 
 
 app.get('/', (req, res) => {
@@ -17,7 +17,8 @@ app.get('/', (req, res) => {
 
 app.use('/', fileUploadRouter)
 
-app.listen(PORT, () => {
+app.listen(PORT, async() => {
   console.log(`Server is running at http://localhost:${PORT}`)
+await connectDB()
   
 })
