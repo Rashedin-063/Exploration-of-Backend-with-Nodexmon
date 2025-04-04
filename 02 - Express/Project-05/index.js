@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 const userRouter = require('./routes/user.route')
+const registerRouter = require('./routes/register.route')
 
 
 app.use('/users', userRouter)
+app.use('/api/register', registerRouter)
 
 
 
