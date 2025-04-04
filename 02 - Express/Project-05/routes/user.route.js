@@ -1,13 +1,10 @@
 const express = require('express');
+const { getAllUsers } = require('../controllers/user.controller');
 const router = express.Router();
 
 
 
-router.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Users data is available'
-  })
-})
+router.get('/', getAllUsers)
 
 
 module.exports = router;
