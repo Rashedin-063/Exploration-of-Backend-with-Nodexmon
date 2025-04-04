@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
-
 const PORT = 3000;
+const userRouter = require('./routes/user.route')
 
 
+app.use('/users', userRouter)
+
+
+
+
+// basic home route
 app.get('/', (req, res) => {
   res.status(200).send(`
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
