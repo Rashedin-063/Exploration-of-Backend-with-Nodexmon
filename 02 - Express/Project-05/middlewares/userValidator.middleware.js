@@ -15,6 +15,19 @@ const userValidator = [
     .withMessage('Email is required')
     .isEmail()
     .withMessage('Please enter a valid email address'),
+  body('password')
+    .trim()
+    .notEmpty()
+    .withMessage('Password is required')
+    .isLength({ min: 4 })
+    .withMessage('Password should be at least 4 characters long'),
+  body('dob')
+    .trim()
+    .notEmpty()
+    .withMessage('date of birth is required')
+    .isISO8601()
+    .toDate()
+    .withMessage('Not a valid date'),
 
   // Middleware to handle validation result
   (req, res, next) => {
