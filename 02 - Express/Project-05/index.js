@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use('/users', userRouter)
-app.use('/api/register', registerRouter)
+app.use('/api', registerRouter)
 
 
 // basic home route
