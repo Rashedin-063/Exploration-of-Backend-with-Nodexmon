@@ -1,7 +1,12 @@
-const { body } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const userValidator = [
-  body('name').trim().notEmpty().withMessage('Name is required'),
+  body('name')
+    .trim()
+    .notEmpty()
+    .withMessage('Name is required')
+    .isLength({ min: 4 })
+    .withMessage('Name should be at least 4 characters long'),
 
   // Middleware to handle validation result
   (req, res, next) => {
