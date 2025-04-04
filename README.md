@@ -19,4 +19,5 @@
      - Project 2 --> MVC Architecture, CORS
      - Project 3 --> REST API without Database
      - Project 4 --> REST API with Database
+     - Project 5 --> Server Side Validation with express-validator
     
