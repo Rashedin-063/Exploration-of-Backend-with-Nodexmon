@@ -4,6 +4,9 @@ const app = express();
 const dbConnect = require('./config/dbConnect');
 const PORT = 3000;
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 const existingDataRoute = require('./routes/existingData.route')
 const productsRoute = require('./routes/products.route')
 

@@ -4,7 +4,7 @@ const getAllExistingData = async (req, res) => {
   
   const users = await User.find()
 
-  res.send(users);
+  res.status(200).send(users);
 };
 
 
