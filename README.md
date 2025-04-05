@@ -20,5 +20,5 @@
      - Project 4 --> REST API with Database
      - Project 5 --> Server Side Validation with express-validator
 
-
-    
+- MongoDB & Mongoose
+     - Lesson 1 --> Connection to MongoDB
