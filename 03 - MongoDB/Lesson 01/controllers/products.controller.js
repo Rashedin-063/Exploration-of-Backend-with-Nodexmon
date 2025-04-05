@@ -15,9 +15,9 @@ const createProduct = async (req, res) => {
     const newProduct = new Product({title, price, quantity});
 
     // save the product to the database
-    await newProduct.save();
+    const savedProduct = await newProduct.save();
 
-    res.status(201).send(newProduct);
+    res.status(201).send(savedProduct);
   } catch (error) {
     res.status(500).send({message: error.message});
   }
