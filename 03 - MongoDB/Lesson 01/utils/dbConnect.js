@@ -6,6 +6,7 @@ const dbConnect = async () => {
     console.log('mongodb connection established');
   } catch (error) {
     console.error({ message: error.message });
+    process.exit(1);
   }
 };
 

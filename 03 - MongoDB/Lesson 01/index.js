@@ -4,8 +4,12 @@ const app = express();
 const dbConnect = require('./utils/dbConnect');
 const PORT = 3000;
 
+const existingDataRoute = require('./routes/existingData.route')
+
 
 dbConnect()
+
+app.use('/data', existingDataRoute)
 
 // basic home route
 app.get('/', (req, res) => {
