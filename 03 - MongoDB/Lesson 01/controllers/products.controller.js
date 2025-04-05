@@ -1,8 +1,13 @@
 const Product = require("../model/product.model");
 
 
-const getAllProducts = (req, res) => {
-  res.send({ message: 'products route' });
+const getAllProducts = async (req, res) => {
+ try {
+   const allProducts = await Product.find();
+   res.status(200).send(allProducts);
+ } catch (error) {
+  res.status(500).send({message: error.message});
+ }
 };
 
 const createProduct = async (req, res) => { 
