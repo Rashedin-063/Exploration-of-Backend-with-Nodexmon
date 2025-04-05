@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const dbConnect = require('./utils/dbConnect');
+const dbConnect = require('./config/dbConnect');
 const PORT = 3000;
 
 const existingDataRoute = require('./routes/existingData.route')
@@ -9,7 +9,7 @@ const productsRoute = require('./routes/products.route')
 
 dbConnect()
 
-app.use('/data', existingDataRoute)
+app.use('/users', existingDataRoute)
 app.use('/products', productsRoute)
 
 // basic home route

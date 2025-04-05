@@ -1,6 +1,10 @@
+const User = require("../model/existingData.model");
 
-const getAllExistingData = (req, res) => {
-  res.send('Welcome to my API');
+const getAllExistingData = async (req, res) => {
+  
+  const users = await User.find()
+
+  res.send(users);
 };
 
 
