@@ -5,11 +5,12 @@ const dbConnect = require('./utils/dbConnect');
 const PORT = 3000;
 
 const existingDataRoute = require('./routes/existingData.route')
-
+const productsRoute = require('./routes/products.route')
 
 dbConnect()
 
 app.use('/data', existingDataRoute)
+app.use('/products', productsRoute)
 
 // basic home route
 app.get('/', (req, res) => {
