@@ -2,12 +2,21 @@ const Product = require("../model/product.model");
 
 
 const getAllProducts = async (req, res) => {
- try {
-   const allProducts = await Product.find();
+  try {
+    const allProducts = await Product.find()
+  //  const allProducts = await Product.find().limit(3);
    if (allProducts.length > 0) { 
-      res.status(200).send(allProducts);
+     res.status(200).send({
+        success: true,
+        message: 'Products retrieved successfully',
+        data: allProducts
+      });
    } else {
-     res.status(404).send({ message: 'No products found' });
+     res.status(404).send({ 
+       success: false,
+       message: 'No products found',
+       data: null
+      });
    }
  } catch (error) {
   res.status(500).send({message: error.message});
@@ -17,11 +26,21 @@ const getAllProducts = async (req, res) => {
 const getSingleProduct = async (req, res) => { 
   try {
     const productId = req.params.id;
-    const foundProduct = await Product.findById(productId);
+    // const foundProduct = await Product.findById(productId, {title: 1, _id: 0})
+    // const foundProduct = await Product.findById(productId).select({ title: 1, _id: 0 })
+    const foundProduct = await Product.findById(productId)
     if (foundProduct) {
-      res.status(200).send(foundProduct);
+      res.status(200).send({
+        success: true,
+        message: 'Product found',
+        data: foundProduct
+      });
     } else {
-      res.status(404).send({ message: 'Product not found' });
+      res.status(404).send({ 
+        success: false,
+        message: 'Product not found',
+        data: null
+       });
     }
   } catch (error) {
     res.status(500).send({message: error.message});
