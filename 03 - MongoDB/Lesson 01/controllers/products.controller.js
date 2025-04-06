@@ -47,16 +47,33 @@ const getAllProducts = async (req, res) => {
   try {
     let allProducts;
 
-    allProducts = await Product.find(
-      {
-        $and : [
-          { price: { $gt: 50000 } },
-          { price: { $lt: 200000 }
-      }]
-    })
-    .sort({
-        price: 1,
-      });
+    // allProducts = await Product.find(
+    //   {
+    //     $and : [
+    //       { price: { $gt: 50000 } },
+    //       { price: { $lt: 200000 }
+    //   }]
+    // })
+    // .sort({
+    //     price: 1,
+    //   });
+    // allProducts = await Product.find(
+    //   {
+    //     $or : [
+    //       { price: { $gt: 50000 } },
+    //       { price: { $lt: 200000 }
+    //   }]
+    // })
+    // .sort({
+    //     price: 1,
+    //   });
+
+     allProducts = await Product.find({
+       price: { $not: { $gt: 50000 } }
+     }).sort({
+       price: 1,
+     });
+   
    
     //  const allProducts = await Product.find().limit(3);
     
