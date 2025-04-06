@@ -7,10 +7,22 @@ const getAllProducts = async (req, res) => {
     // const allProducts = await Product.find({ price: { $nin: [70000, 100000] } }).sort({
     //   price: 1,
     // });
-    const allProducts = await Product.find().sort({
-      price: 1,
-    });
-  //  const allProducts = await Product.find().limit(3);
+
+    const price = req.query.price
+
+    let allProducts;
+
+    if (price) {
+      allProducts = await Product.find({ price: { $gt: price } }).sort({
+        price: 1,
+      });
+    } else {
+      allProducts = await Product.find().sort({
+        price: 1,
+      });
+   }
+    //  const allProducts = await Product.find().limit(3);
+    
    if (allProducts.length > 0) { 
      res.status(200).send({
         success: true,
