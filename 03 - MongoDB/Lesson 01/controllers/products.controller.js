@@ -205,7 +205,7 @@ const createProduct = async (req, res) => {
   }
 }
 
-
+// findByIdAndDelete (deleted data and returns the deleted data)
 const deleteProduct = async (req, res) => {
  try {
    const productId = req.params.id;
@@ -218,9 +218,37 @@ const deleteProduct = async (req, res) => {
 }
 
 
+const updateProduct = async (req, res) => {
+ try {
+   const productId = req.params.id;
+
+   const doc = {quantity: req.body.quantity};
+
+ 
+   const updatedProduct = await Product.findByIdAndUpdate(productId, doc);
+   if (updatedProduct) {
+     res.status(201).send({
+       success: true,
+       message: 'Product updated successfully',
+       data: updateProduct,
+     });
+   } else {
+     res.status(404).send({
+       success: false,
+       message: 'Product not found',
+       data: null,
+     })
+ }
+ } catch (error) {
+  res.status(500).send({message: error.message});
+ }
+}
+
+
 module.exports = {
   getAllProducts,
   getSingleProduct,
   createProduct,
   deleteProduct,
+  updateProduct,
 }
