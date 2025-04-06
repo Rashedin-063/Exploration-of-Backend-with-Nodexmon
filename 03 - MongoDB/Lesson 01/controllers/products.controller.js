@@ -96,32 +96,52 @@ const Product = require("../model/product.model");
 // };
 
 
-// counting, sorting, selecting
+// // counting, sorting, selecting
+// const getAllProducts = async (req, res) => {
+//   try {
+//     let allProducts;
+//     let allProductsCount;
+
+//     // sorting
+//     // const  allProducts = await Product.find().sort({
+//     //    price: 1,
+//     //  });
+
+//     // counting
+//     //  allProductsCount = await Product.find().countDocuments()
+
+//     // selecting
+//     allProducts = await Product.find().select({title: 1, price: 1, _id: 0}).sort({
+//        price: 1,
+//      });
+
+//     //  const allProducts = await Product.find().limit(3);
+
+//     // res.status(200).send({
+//     //   success: true,
+//     //   message: `found ${allProductsCount} products`,
+//     //   data: allProductsCount,
+//     // });
+
+//      res.status(200).send({
+//       success: true,
+//       message: `found all products`,
+//       data: allProducts,
+//     });
+
+//   } catch (error) {
+//   res.status(500).send({message: error.message});
+//  }
+// };
+
 const getAllProducts = async (req, res) => {
   try {
     let allProducts;
-    let allProductsCount;
-
-    // sorting
-    // const  allProducts = await Product.find().sort({
-    //    price: 1,
-    //  });
-
-    // counting
-    //  allProductsCount = await Product.find().countDocuments()
 
     // selecting
-    allProducts = await Product.find().select({title: 1, price: 1, _id: 0}).sort({
+    allProducts = await Product.find().sort({
        price: 1,
      });
-
-    //  const allProducts = await Product.find().limit(3);
-
-    // res.status(200).send({
-    //   success: true,
-    //   message: `found ${allProductsCount} products`,
-    //   data: allProductsCount,
-    // });
 
      res.status(200).send({
       success: true,
@@ -186,8 +206,21 @@ const createProduct = async (req, res) => {
 }
 
 
+const deleteProduct = async (req, res) => {
+ try {
+   const productId = req.params.id;
+   //  await Product.findByIdAndDelete(productId);
+   await Product.deleteOne({_id: productId});
+   res.status(200).send({message: 'Product deleted successfully'});
+ } catch (error) {
+  res.status(500).send({message: error.message});
+ }
+}
+
+
 module.exports = {
   getAllProducts,
   getSingleProduct,
-  createProduct
+  createProduct,
+  deleteProduct,
 }
