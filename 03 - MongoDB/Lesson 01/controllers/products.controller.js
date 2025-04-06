@@ -1,26 +1,63 @@
 const Product = require("../model/product.model");
 
 
+// comparison  operator
+// const getAllProducts = async (req, res) => {
+//   try {
+//     // const allProducts = await Product.find({ price: {$lte: 200000}}).sort({price: 1})
+//     // const allProducts = await Product.find({ price: { $nin: [70000, 100000] } }).sort({
+//     //   price: 1,
+//     // });
+
+//     const price = req.query.price
+
+//     let allProducts;
+
+//     if (price) {
+//       allProducts = await Product.find({ price: { $gt: price } }).sort({
+//         price: 1,
+//       });
+//     } else {
+//       allProducts = await Product.find().sort({
+//         price: 1,
+//       });
+//    }
+//     //  const allProducts = await Product.find().limit(3);
+    
+//    if (allProducts.length > 0) {
+//      res.status(200).send({
+//         success: true,
+//         message: 'Products retrieved successfully',
+//         data: allProducts
+//       });
+//    } else {
+//      res.status(404).send({
+//        success: false,
+//        message: 'No products found',
+//        data: null
+//       });
+//    }
+//  } catch (error) {
+//   res.status(500).send({message: error.message});
+//  }
+// };
+
+// logical operators
 const getAllProducts = async (req, res) => {
   try {
-    // const allProducts = await Product.find({ price: {$lte: 200000}}).sort({price: 1})
-    // const allProducts = await Product.find({ price: { $nin: [70000, 100000] } }).sort({
-    //   price: 1,
-    // });
-
-    const price = req.query.price
-
     let allProducts;
 
-    if (price) {
-      allProducts = await Product.find({ price: { $gt: price } }).sort({
+    allProducts = await Product.find(
+      {
+        $and : [
+          { price: { $gt: 50000 } },
+          { price: { $lt: 200000 }
+      }]
+    })
+    .sort({
         price: 1,
       });
-    } else {
-      allProducts = await Product.find().sort({
-        price: 1,
-      });
-   }
+   
     //  const allProducts = await Product.find().limit(3);
     
    if (allProducts.length > 0) { 
@@ -40,6 +77,7 @@ const getAllProducts = async (req, res) => {
   res.status(500).send({message: error.message});
  }
 };
+
 
 const getSingleProduct = async (req, res) => { 
   try {
