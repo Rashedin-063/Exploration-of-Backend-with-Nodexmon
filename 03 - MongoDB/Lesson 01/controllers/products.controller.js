@@ -184,9 +184,9 @@ const createProduct = async (req, res) => {
 
   try {
     // create a new product
-    const { title, price, quantity } = req.body;
+    const { title, price, quantity, email } = req.body;
 
-    const newProduct = new Product({title, price, quantity});
+    const newProduct = new Product({title, price, quantity, email});
 
     // save the product to the database
     const savedProduct = await newProduct.save()
@@ -209,9 +209,13 @@ const createProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
  try {
    const productId = req.params.id;
-   //  await Product.findByIdAndDelete(productId);
-   await Product.deleteOne({_id: productId});
-   res.status(200).send({message: 'Product deleted successfully'});
+   const deletedProduct =  await Product.findByIdAndDelete(productId);
+  //  await Product.deleteOne({_id: productId});
+   res.status(200).send({
+     success: true,
+     message: 'Product deleted successfully',
+    data: deletedProduct
+   })
  } catch (error) {
   res.status(500).send({message: error.message});
  }
