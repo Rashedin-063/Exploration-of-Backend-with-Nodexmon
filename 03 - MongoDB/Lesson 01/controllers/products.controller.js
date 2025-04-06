@@ -222,15 +222,16 @@ const updateProduct = async (req, res) => {
  try {
    const productId = req.params.id;
 
-   const doc = {quantity: req.body.quantity};
+   const doc = { $set: { quantity: req.body.quantity } };
 
- 
-   const updatedProduct = await Product.findByIdAndUpdate(productId, doc);
+   const updatedProduct = await Product.findByIdAndUpdate(productId, doc, { new: true });
+
+   
    if (updatedProduct) {
-     res.status(201).send({
+     res.status(200).send({
        success: true,
        message: 'Product updated successfully',
-       data: updateProduct,
+       data: updatedProduct,
      });
    } else {
      res.status(404).send({
