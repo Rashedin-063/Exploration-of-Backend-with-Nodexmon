@@ -24,9 +24,15 @@ const productSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
- email:  {
-   type: String,
-   unique: true
+  email: {
+    type: String,
+    required: [true, 'email is needed'],
+    validate: {
+      validator: function (v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      },
+      message: (props) => `${props.value} is not a valid email address`,
+    },
   },
   createdAt: {
     type: Date,
