@@ -11,7 +11,13 @@ const getAllProducts = async (req, res) => {
 };
 
 const getSingleProduct = async (req, res) => { 
-  res.status(200).send({message: 'product found'})
+  try {
+    const productId = req.params.id;
+    const foundProduct = await Product.findById(productId);
+    res.status(200).send(foundProduct);
+  } catch (error) {
+    res.status(500).send({message: error.message});
+  }
 }
 
 const createProduct = async (req, res) => { 
