@@ -4,7 +4,11 @@ const Product = require("../model/product.model");
 const getAllProducts = async (req, res) => {
  try {
    const allProducts = await Product.find();
-   res.status(200).send(allProducts);
+   if (allProducts.length > 0) { 
+      res.status(200).send(allProducts);
+   } else {
+     res.status(404).send({ message: 'No products found' });
+   }
  } catch (error) {
   res.status(500).send({message: error.message});
  }
@@ -14,7 +18,11 @@ const getSingleProduct = async (req, res) => {
   try {
     const productId = req.params.id;
     const foundProduct = await Product.findById(productId);
-    res.status(200).send(foundProduct);
+    if (foundProduct) {
+      res.status(200).send(foundProduct);
+    } else {
+      res.status(404).send({ message: 'Product not found' });
+    }
   } catch (error) {
     res.status(500).send({message: error.message});
   }
