@@ -3,7 +3,13 @@ const Product = require("../model/product.model");
 
 const getAllProducts = async (req, res) => {
   try {
-    const allProducts = await Product.find()
+    // const allProducts = await Product.find({ price: {$lte: 200000}}).sort({price: 1})
+    // const allProducts = await Product.find({ price: { $nin: [70000, 100000] } }).sort({
+    //   price: 1,
+    // });
+    const allProducts = await Product.find().sort({
+      price: 1,
+    });
   //  const allProducts = await Product.find().limit(3);
    if (allProducts.length > 0) { 
      res.status(200).send({
