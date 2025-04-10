@@ -6,10 +6,14 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoute = require('./routes/auth.route');
 const productRoute = require('./routes/product.route');
+const dbConnect = require('./config/dbConnect');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// database connection
+dbConnect()
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(__dirname + '/views/index.html');
