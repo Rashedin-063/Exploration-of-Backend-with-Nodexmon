@@ -1,19 +1,18 @@
 const express = require('express');
+const { getRegisteredUsers, getLoginUsers, registerUser, loginUser } = require('../controllers/auth.controller');
 const router = express.Router();
 
 
-router.get('/', (req, res) => { 
-  res.status(200).json({
-    message: "Welcome to the authentication API",
-  })
-})
+router.get('/register', getRegisteredUsers)
 
 
-router.post('/', (req, res) => { 
-  res.status(201).json({
-    message: "User registered successfully",
-  })
-})
+router.get('/login',  getLoginUsers)
+
+
+router.post('/register', registerUser)
+
+
+router.post('login', loginUser);
 
 
 module.exports = router;

@@ -1,3 +1,4 @@
+const { json } = require('express');
 const Product = require('../models/product.model');
 
 // Create a new product
@@ -13,6 +14,8 @@ exports.createProduct = (req, res) => {
 
 // Get all products
 exports.getAllProducts = (req, res) => {
+
+  return res.json({message: 'products found'})
   Product.find()
     .then((products) => res.status(200).json(products))
     .catch((error) =>

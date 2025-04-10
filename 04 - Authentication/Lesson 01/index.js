@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 });
 
 // auth route
-app.use('/api/register', authRoute);
+app.use('/api', authRoute);
 
 // product route
 app.use('/api/product', productRoute);
