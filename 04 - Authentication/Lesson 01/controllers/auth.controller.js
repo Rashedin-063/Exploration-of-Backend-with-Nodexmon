@@ -14,8 +14,16 @@ const getLoginUsers = (req, res) => {
 
 
 const registerUser = (req, res) => {
+
+  const { email, password } = req.body;
+  
+
   res.status(201).json({
     message: 'User registered successfully',
+    user: {
+      email,
+      password,
+    },
   });
 };
 
