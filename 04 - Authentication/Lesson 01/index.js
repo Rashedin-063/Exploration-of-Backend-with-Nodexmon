@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoute = require('./routes/auth.route');
 
 
 app.use(cors());
@@ -12,6 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.status(200).sendFile(__dirname + '/views/index.html');
 });
+
+
+// auth route
+app.use('/api/register', authRoute);
 
 // handling server error
 app.use((error, req, res, next) => { 
