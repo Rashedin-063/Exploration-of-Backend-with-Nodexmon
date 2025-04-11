@@ -51,7 +51,38 @@ const registerUser = async(req, res) => {
 };
 
 
-const loginUser = (req, res) => {
+const loginUser = async(req, res) => {
+
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if(user && user.password === password) {
+      return res.status(200).json({
+        success: true,
+        message: 'User logged in successfully',
+        user: user,
+      });
+    }
+    if(user && user.password !== password) {
+      return res.status(401).json({
+        success: false,
+        message: 'Incorrect password',
+      });
+    }
+    if(!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+  } catch (error) {
+    res.status(500).json(error.message)
+  }
+  
+
   res.status(201).json({
     message: 'User logged in successfully',
   });
