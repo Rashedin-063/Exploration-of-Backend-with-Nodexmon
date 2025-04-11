@@ -1,3 +1,4 @@
+const User = require("../models/user.model");
 
 
 const getRegisteredUsers = (req, res) => {
@@ -13,18 +14,24 @@ const getLoginUsers = (req, res) => {
 }
 
 
-const registerUser = (req, res) => {
+const registerUser = async(req, res) => {
 
-  const { email, password } = req.body;
+  try {
+    const newUser = new User(req.body);
+
+  const savedUser =  await newUser.save()
+
+    res.status(201).json({
+      success: true,
+      message: 'User registered successfully',
+      user: savedUser,
+    });
+
+  } catch (error) {
+    res.status(500).json(error.message)
+  }
+
   
-
-  res.status(201).json({
-    message: 'User registered successfully',
-    user: {
-      email,
-      password,
-    },
-  });
 };
 
 
