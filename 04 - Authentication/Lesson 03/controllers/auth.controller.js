@@ -1,3 +1,4 @@
+const md5 = require("md5");
 const User = require("../models/user.model");
 
 
@@ -33,7 +34,10 @@ const getLoginUsers = (req, res) => {
 const registerUser = async(req, res) => {
 
   try {
-    const newUser = new User(req.body);
+    const newUser = new User({
+      email: req.body.email,
+      password: md5(req.body.password),
+    });
 
   const savedUser =  await newUser.save()
 
@@ -53,7 +57,8 @@ const registerUser = async(req, res) => {
 
 const loginUser = async(req, res) => {
 
-  const { email, password } = req.body;
+  const email = req.body.email;
+  const password = md5(req.body.password);
 
   try {
     const user = await User.findOne({ email });
