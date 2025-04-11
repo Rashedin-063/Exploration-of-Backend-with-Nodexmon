@@ -1,5 +1,6 @@
-const md5 = require("md5");
 const User = require("../models/user.model");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 const getRegisteredUsers = async (req, res) => {
@@ -31,21 +32,26 @@ const getLoginUsers = (req, res) => {
 }
 
 
-const registerUser = async(req, res) => {
+const registerUser = (req, res) => {
 
   try {
-    const newUser = new User({
-      email: req.body.email,
-      password: md5(req.body.password),
+
+    bcrypt.hash(req.body.password, saltRounds, async function (err, hash) {
+      const newUser = new User({
+        email: req.body.email,
+        password: hash,
+      });
+
+      const savedUser = await newUser.save();
+
+      res.status(201).json({
+        success: true,
+        message: 'User registered successfully',
+        user: savedUser,
+      });
     });
 
-  const savedUser =  await newUser.save()
-
-    res.status(201).json({
-      success: true,
-      message: 'User registered successfully',
-      user: savedUser,
-    });
+    
 
   } catch (error) {
     res.status(500).json(error.message)
@@ -55,43 +61,42 @@ const registerUser = async(req, res) => {
 };
 
 
-const loginUser = async(req, res) => {
-
-  const email = req.body.email;
-  const password = md5(req.body.password);
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
 
-    if(user && user.password === password) {
-      return res.status(200).json({
-        success: true,
-        message: 'User logged in successfully',
-        user: user,
-      });
-    }
-    if(user && user.password !== password) {
-      return res.status(401).json({
-        success: false,
-        message: 'Incorrect password',
-      });
-    }
-    if(!user) {
+    if (!user) {
       return res.status(404).json({
         success: false,
         message: 'User not found',
       });
     }
 
-  } catch (error) {
-    res.status(500).json(error.message)
-  }
-  
+    const isMatch = await bcrypt.compare(password, user.password);
 
-  res.status(201).json({
-    message: 'User logged in successfully',
-  });
+    if (isMatch) {
+      return res.status(200).json({
+        success: true,
+        message: 'User logged in successfully',
+        user,
+      });
+    } else {
+      return res.status(401).json({
+        success: false,
+        message: 'Incorrect password',
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message,
+    });
+  }
 };
+
 
 
 module.exports = {

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-var md5 = require('md5');
- 
+
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -25,7 +24,6 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
-
 
 const User = mongoose.model('User', userSchema);
 
