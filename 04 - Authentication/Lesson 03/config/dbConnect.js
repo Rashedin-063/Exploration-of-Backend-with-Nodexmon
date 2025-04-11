@@ -9,10 +9,7 @@ const dbConnect = async () => {
       throw new Error('DB_URI is not found');
     }
 
-    await mongoose.connect(DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(DB_URI);
 
     console.log('Connected to MongoDB successfully');
   } catch (error) {

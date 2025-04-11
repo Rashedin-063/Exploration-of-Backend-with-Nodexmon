@@ -2,11 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoute = require('./routes/auth.route');
 const productRoute = require('./routes/product.route');
 const dbConnect = require('./config/dbConnect');
+var md5 = require('md5');
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // database connection
 dbConnect()
+
+console.log('mdt console',md5('hello world'));
+
 
 app.get('/', (req, res) => {
   res.status(200).sendFile(__dirname + '/views/index.html');
