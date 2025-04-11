@@ -25,3 +25,4 @@
 
 - Authentication
      - Lesson 1 ---> Database Matching
+     - Lesson 2 ---> Database Encryption
