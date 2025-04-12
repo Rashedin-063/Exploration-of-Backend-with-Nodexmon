@@ -1,7 +1,7 @@
 
 
 const getRegisteredUser = async (req, res) => { 
-  res.status(200).json({message: 'user found'})
+  res.render('register')
 }
 
 // Register Controller
