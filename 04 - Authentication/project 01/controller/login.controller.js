@@ -1,7 +1,11 @@
+
+
+const loginPage = (req, res) => { 
+  res.render('login', { title: 'Login' });
+}
+
 const loginUser = (req, res) => {
-  const { username, password } = req.body;
-  // Add authentication logic here
-  res.status(200).json({ message: 'Login successful', username });
+  res.render('login');
 };
 
-module.exports = { loginUser };
+module.exports = { loginUser, loginPage };
