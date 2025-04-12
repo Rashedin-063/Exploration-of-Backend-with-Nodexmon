@@ -4,7 +4,7 @@ const getProfile = (req, res) => {
     username: 'JohnDoe',
     email: 'johndoe@example.com',
   };
-  res.status(200).json(user);
+ res.render('profile')
 };
 
 module.exports = { getProfile };
