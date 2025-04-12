@@ -9,15 +9,7 @@
       "
     >
       <h1>Login to your account</h1>
-      <form action="/login" method="POST">
-        <input type="text" name="username" placeholder="Username" required />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
+      <%-include('layout/form', { action: '/login', buttonText: 'Login' })%>
+       <p>Don't have an account? <a href="/register" style="color: rebeccapurple; text-decoration: none;">Register here</a>.</p>
     </div>
     <%-include('layout/footer')%>

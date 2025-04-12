@@ -41,7 +41,13 @@ const getRegisteredUser = async (req, res) => {
 // };
 
 const registerUser = async (req, res) => { 
-  res.status(201).json({message: 'user registered successfully'})
+ try {
+   res.status(201).json({ message: 'user registered successfully' });
+ } catch (error) {
+   console.error(error);
+   res.status(500).json({ message: 'Server error' });
+  
+ }
 }
 
 module.exports = { registerUser, getRegisteredUser };
