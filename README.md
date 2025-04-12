@@ -26,5 +26,5 @@
 - Authentication
      - Lesson 1 ---> Database Matching
      - Lesson 2 ---> Database Encryption (mongoose-encryption)
-     - Lesson 3 ---> Database Encryption (md5)
-     - Lesson 4 ---> Database Encryption (salting and hashing)
+     - Lesson 3 ---> Database Encryption (hashing - md5)
+     - Lesson 4 ---> Database Encryption (salting and hashing - bycript)
