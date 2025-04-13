@@ -1,3 +1,4 @@
+const passport = require("passport");
 
 
 const loginPage = (req, res) => { 
@@ -7,13 +8,7 @@ const loginPage = (req, res) => {
 const loginUser = (req, res) => {
   try {
    
-    const { email, password } = req.body;
-  
-    res.status(200).json({
-     success: true,
-      message: 'Login successful',
-      data: { email, password }
-   })
+     passport.authenticate('local', { failureRedirect: '/login', successRedirect: '/profile' })
    
  } catch (error) {
     res.status(500).json({
@@ -25,3 +20,4 @@ const loginUser = (req, res) => {
 };
 
 module.exports = { loginUser, loginPage };
+
