@@ -41,8 +41,14 @@ const getRegisteredUser = async (req, res) => {
 // };
 
 const registerUser = async (req, res) => { 
+  const { username, email, password } = req.body;
+  
  try {
-   res.status(201).json({ message: 'user registered successfully' });
+   res.status(201).json({
+     success: true,
+     message: 'user registered successfully',
+     data: { username, email, password }
+   });
  } catch (error) {
    console.error(error);
    res.status(500).json({ message: 'Server error' });

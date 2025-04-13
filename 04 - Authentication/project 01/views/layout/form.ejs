@@ -1,29 +1,87 @@
+<form
+  action="<%= action %>"
+  method="POST"
+  style="
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    border: 2px solid rebeccapurple;
+    padding: 3rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  "
+>
+  <% if (action === '/register') { %>
+  <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    required
+    style="
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    "
+    onfocus="this.style.borderColor='rebeccapurple'"
+    onblur="this.style.borderColor='#ccc'"
+  />
+  <% } %>
 
-      <form action="<%= action %>" method="POST" style="display: flex; flex-direction: column; gap: 10px; width: 400px; border: 2px solid rebeccapurple; padding: 3rem; border-radius: 8px; background-color: #f9f9f9;">
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          required
-          style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; outline: none; transition: border-color 0.3s; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);"
-          onfocus="this.style.borderColor='rebeccapurple'"
-          onblur="this.style.borderColor='#ccc'"
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          required
-          style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; outline: none; transition: border-color 0.3s; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);"
-          onfocus="this.style.borderColor='rebeccapurple'"
-          onblur="this.style.borderColor='#ccc'"
-        />
-        <button
-          type="submit"
-          style="padding: 10px 15px; font-size: 16px; color: white; background-color: rebeccapurple; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;"
-          onmouseover="this.style.backgroundColor='#6a0dad'"
-          onmouseout="this.style.backgroundColor='rebeccapurple'"
-        >
-          <%= buttonText %>
-        </button>
-      </form>
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    required
+    style="
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    "
+    onfocus="this.style.borderColor='rebeccapurple'"
+    onblur="this.style.borderColor='#ccc'"
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    required
+    style="
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.3s;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    "
+    onfocus="this.style.borderColor='rebeccapurple'"
+    onblur="this.style.borderColor='#ccc'"
+  />
+  <button
+    type="submit"
+    style="
+      padding: 10px 15px;
+      font-size: 16px;
+      color: white;
+      background-color: rebeccapurple;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: .5rem;
+    "
+    onmouseover="this.style.backgroundColor='#6a0dad'"
+    onmouseout="this.style.backgroundColor='rebeccapurple'"
+  >
+    <%= buttonText %>
+  </button>
+</form>
