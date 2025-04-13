@@ -4,6 +4,8 @@ const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
+require('./config/dbConnect');
+
 const registerRoute = require('./routes/register.route');
 const loginRoute = require('./routes/login.route');
 const profileRoute = require('./routes/profile.route');
