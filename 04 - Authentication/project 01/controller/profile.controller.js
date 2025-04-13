@@ -1,10 +1,14 @@
 const getProfile = (req, res) => {
-  // Mock user data
-  const user = {
-    username: 'JohnDoe',
-    email: 'johndoe@example.com',
-  };
- res.render('profile')
+
+  // console.log(req.isAuthenticated());
+  
+
+  if (req.isAuthenticated()) {
+  return  res.render('profile');
+  }
+  res.redirect('/login');
+
+
 };
 
 module.exports = { getProfile };

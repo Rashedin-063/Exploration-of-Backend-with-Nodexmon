@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3000;
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
 
 app.set('trust proxy', 1); // trust first proxy
 app.use(
@@ -25,6 +26,13 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  next();
+});
 
 const registerRoute = require('./routes/register.route');
 const loginRoute = require('./routes/login.route');
