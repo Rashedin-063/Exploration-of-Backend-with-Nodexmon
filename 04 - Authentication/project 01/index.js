@@ -1,10 +1,30 @@
 require('dotenv').config();
+require('./config/dbConnect');
 const express = require('express');
 const app = express();
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
+const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
-require('./config/dbConnect');
+app.set('trust proxy', 1); // trust first proxy
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+      collectionName: 'sessions',
+      ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+    }),
+    // cookie: { secure: true },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const registerRoute = require('./routes/register.route');
 const loginRoute = require('./routes/login.route');

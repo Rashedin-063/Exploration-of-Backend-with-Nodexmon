@@ -1,4 +1,5 @@
 const passport = require("passport");
+require('../config/passport')
 
 
 const loginPage = (req, res) => { 

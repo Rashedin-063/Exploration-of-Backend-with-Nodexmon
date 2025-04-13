@@ -1,32 +1,7 @@
 const User = require('../models/user.model');
 require('dotenv').config();
-const express = require('express');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const passport = require('passport');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-
-const app = express();
-app.set('trust proxy', 1); // trust first proxy
-app.use(
-  session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI,
-      collectionName: 'sessions',
-      ttl: 14 * 24 * 60 * 60, // = 14 days. Default
-    }),
-    // cookie: { secure: true },
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 
 
 
