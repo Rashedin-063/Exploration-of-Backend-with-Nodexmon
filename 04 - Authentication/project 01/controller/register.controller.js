@@ -1,3 +1,4 @@
+const User = require("../models/user.model");
 
 
 const getRegisteredUser = async (req, res) => { 
@@ -41,17 +42,28 @@ const getRegisteredUser = async (req, res) => {
 // };
 
 const registerUser = async (req, res) => { 
-  const { username, email, password } = req.body;
+  const { userName, email, password } = req.body;
   
- try {
-   res.status(201).json({
-     success: true,
-     message: 'user registered successfully',
-     data: { username, email, password }
-   });
+  try {
+   
+    const user = await User.findOne({ email: email })
+    
+    if (user) return res.status(400).json({ message: 'User already exists' })
+    
+    const newUser = new User({
+      userName, email, password
+    })
+
+    await newUser.save()
+
+   res.status(201).redirect('/login');
  } catch (error) {
    console.error(error);
-   res.status(500).json({ message: 'Server error' });
+    res.status(500).json({
+      success: false,
+      message: error.message ? error.message : 'Server error',
+      data: null,
+    });
   
  }
 }

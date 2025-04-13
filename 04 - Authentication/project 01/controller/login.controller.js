@@ -5,20 +5,21 @@ const loginPage = (req, res) => {
 }
 
 const loginUser = (req, res) => {
- try {
+  try {
+   
+    const { email, password } = req.body;
   
-   res.status(200).json({
+    res.status(200).json({
+     success: true,
       message: 'Login successful',
-      status: true,
-      error: null
+      data: { email, password }
    })
    
  } catch (error) {
-   res.status(500).json({
-      message: 'Server error',
-      status: false,
+    res.status(500).json({
+     success: false,
+      message:  error.message ? error.message : 'Server error',
       data: null,
-      error: error.message
    })
  }
 };
