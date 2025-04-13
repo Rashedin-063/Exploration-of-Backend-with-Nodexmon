@@ -4,25 +4,27 @@ const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(
-  new LocalStrategy(async (userName, password, done) => {
-    
-    try {
-      const user = await User.findOne({ userName: userName });
-       if (!user) {
-         return done(null, false, { message: 'Incorrect username' });
-      }
-      
-      if (!bcrypt.compare(password, user.password)) {
+  new LocalStrategy(
+    { usernameField: 'email' },
+    async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email: email });
+        if (!user) {
+          return done(null, false, { message: 'Incorrect email' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
           return done(null, false, { message: 'Incorrect password' });
-      } 
+        }
 
-       return done(null, user);
 
-    } catch (error) {
-        return done(err);
+        return done(null, user);
+      } catch (error) {
+        return done(error);
+      }
     }
-
-  })
+  )
 );
 
 passport.serializeUser((user, done) => {
@@ -37,8 +39,4 @@ passport.deserializeUser( async (id, done) => {
   } catch (error) {
     done(error, false)
   }
-
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
 });
