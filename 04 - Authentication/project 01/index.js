@@ -16,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  // res.sendFile(__dirname + '/views/index.html');
   res.render('index');
 });
 
@@ -24,7 +23,7 @@ app.get('/', (req, res) => {
 app.use('/register', registerRoute)
 app.use('/login', loginRoute)
 app.use('/profile', profileRoute)
-app.use('/logout', loginRoute)
+app.use('/logout', logoutRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
