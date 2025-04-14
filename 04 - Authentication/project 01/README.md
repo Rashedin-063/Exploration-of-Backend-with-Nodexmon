@@ -83,3 +83,55 @@ passport.deserializeUser(async (id, done) => {
 
 
 ```
+
+## step 5
+
+```
+// controllers/auth.controller.js
+const bcrypt = require('bcrypt');
+const User = require('../models/user.model');
+
+const registerUser = async (req, res) => {
+  const { userName, email, password } = req.body;
+  const hash = await bcrypt.hash(password, 10);
+
+  await new User({ userName, email, password: hash }).save();
+  res.redirect('/login');
+};
+
+
+```
+
+## step 6
+```
+// routes/auth.js
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/login',
+}));
+
+```
+
+## step 7
+```
+const ensureAuth = (req, res, next) => {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login');
+};
+
+// Usage
+app.get('/profile', ensureAuth, (req, res) => {
+  res.render('profile', { user: req.user });
+});
+
+```
+
+## step 7
+```
+app.get('/logout', (req, res) => {
+  req.logout(() => {
+    res.redirect('/login');
+  });
+});
+
+```
