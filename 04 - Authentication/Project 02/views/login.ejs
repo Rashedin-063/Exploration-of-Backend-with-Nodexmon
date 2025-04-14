@@ -1,0 +1,25 @@
+<%-include('layout/header')%>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 78vh;
+    flex-direction: column;
+  "
+>
+  <h1>Login to your account</h1>
+
+ <% if (typeof error !== 'undefined' && error.length > 0) { %>
+  <div class="error"><%= error[0] %></div>
+<% } %>
+
+  <%-include('layout/form', { action: '/login', buttonText: 'Login' })%>
+  <p>
+    Don't have an account?
+    <a href="/register" style="color: rebeccapurple; text-decoration: none"
+      >Register here</a
+    >.
+  </p>
+</div>
+<%-include('layout/footer')%>
