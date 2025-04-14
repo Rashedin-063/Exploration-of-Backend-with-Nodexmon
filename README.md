@@ -30,4 +30,5 @@
      - Lesson 4 ---> Database Encryption (salting and hashing - bycript)
 
      - Project 1 ---> Passport local strategy session base
+     - Project 2 ---> Project 1 practice
        
