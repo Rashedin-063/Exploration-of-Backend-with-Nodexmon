@@ -30,10 +30,4 @@
      - Lesson 4 ---> Database Encryption (salting and hashing - bycript)
 
      - Project 1 ---> Passport local strategy session base
-        - 1. passport main library (session management)
-                a. passport
-                b. express-session
-
-        - 2. strategy - (user authenticate)
-                a. local strategy - passport-local
-                b. passport google
+       
