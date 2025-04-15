@@ -50,7 +50,7 @@ passport.deserializeUser(async (id, done) => {
 
 ```
 
-##   Initialize Session and Passport (in index.js or app.js)
+##  Step 3 - Initialize Session and Passport (in index.js or app.js)
 
 ```
 const express = require('express');
