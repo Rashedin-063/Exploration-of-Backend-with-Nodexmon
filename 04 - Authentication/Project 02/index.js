@@ -13,6 +13,7 @@ const registerRoute = require('./routes/register.route');
 const loginRoute = require('./routes/login.route');
 const profileRoute = require('./routes/profile.route');
 const logoutRoute = require('./routes/logout.route');
+const passport = require('passport');
 
 
 
@@ -38,6 +39,9 @@ app.use(
   }
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session()); 
 
 // Routes
 app.get('/', (req, res) => {
