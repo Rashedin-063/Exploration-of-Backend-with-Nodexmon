@@ -20,6 +20,7 @@
     "express-session": "^1.18.1",
     "mongoose": "^8.13.2",
     "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0"
   }
 }

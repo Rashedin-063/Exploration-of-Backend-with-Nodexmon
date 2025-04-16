@@ -9,12 +9,23 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://www.example.com/auth/google/callback',
+      callbackURL: 'http://localhost:3000/google/callback',
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+      User.findOne({ googleId: profile.id }, (err, user) => {
+        if (err) return cb(err, null);
+
+        if (!user) {
+          let newUser = new User({
+            username: profile.displayName,
+            googleId: profile.id,
+          })
+          newUser.save();
+          return cb(null, newUser);
+        } else {
+          return cb(null, user);
+        }
+     })
     }
   )
 );
