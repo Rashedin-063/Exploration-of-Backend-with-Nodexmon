@@ -20,6 +20,8 @@ passport.use(
             const newUser = await User.create({
               username: profile.displayName,
               googleId: profile.id,
+              accessToken: accessToken,
+              refreshToken: refreshToken,
             });
             return done(null, newUser);
           }

@@ -10,8 +10,10 @@ const userSchema = mongoose.Schema({
   googleId: {
     type: String,
     required: true,
-  }
-})
+  },
+  accessToken: String, 
+  refreshToken: String,
+});
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
