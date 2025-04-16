@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const authRoute = require('./routes/auth.route');
 const loginRoute = require('./routes/login.route');
 const profileRoute = require('./routes/profile.route');
 const logoutRoute = require('./routes/logout.route');
@@ -47,21 +48,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// Google authentication routes
-app.get(
-  '/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile'],
-    prompt: 'select_account',
-  })
-);
-
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login', successRedirect: '/profile' })
-);
-
 // routes
+app.use('/auth', authRoute);
 app.use('/login', loginRoute);
 app.use('/profile', profileRoute);
 app.use('/logout', logoutRoute);
