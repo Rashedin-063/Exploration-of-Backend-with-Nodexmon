@@ -9,7 +9,6 @@ const MongoStore = require('connect-mongo');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const registerRoute = require('./routes/register.route');
 const loginRoute = require('./routes/login.route');
 const profileRoute = require('./routes/profile.route');
 const logoutRoute = require('./routes/logout.route');
@@ -49,7 +48,6 @@ app.get('/', (req, res) => {
 });
 
 // routes
-app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/profile', profileRoute);
 app.use('/logout', logoutRoute);
