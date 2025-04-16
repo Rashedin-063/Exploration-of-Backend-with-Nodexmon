@@ -11,21 +11,21 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: 'http://localhost:3000/auth/google/callback',
     },
-    function (accessToken, refreshToken, profile, cb) {
-      User.findOne({ googleId: profile.id }, (err, user) => {
-        if (err) return cb(err, null);
-
-        if (!user) {
-          let newUser = new User({
-            username: profile.displayName,
-            googleId: profile.id,
-          })
-          newUser.save();
-          return cb(null, newUser);
-        } else {
-          return cb(null, user);
+   async function (accessToken, refreshToken, profile, cb) {
+        try {
+          const user = User.findOne({ googleId: profile.id });
+          if (user) {
+            return cb(null, user);
+          } else {
+            const newUser = await User.create({
+              username: profile.displayName,
+              googleId: profile.id,
+            });
+            return cb(null, newUser);
+          }
+        } catch (error) {
+          return cb(error, null);
         }
-     })
     }
   )
 );
