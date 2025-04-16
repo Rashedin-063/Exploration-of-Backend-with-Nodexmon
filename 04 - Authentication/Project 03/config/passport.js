@@ -11,20 +11,20 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: 'http://localhost:3000/auth/google/callback',
     },
-   async function (accessToken, refreshToken, profile, cb) {
+   async function (accessToken, refreshToken, profile, done) {
         try {
-          const user = User.findOne({ googleId: profile.id });
+          const user = await User.findOne({ googleId: profile.id });
           if (user) {
-            return cb(null, user);
+            return done(null, user);
           } else {
             const newUser = await User.create({
               username: profile.displayName,
               googleId: profile.id,
             });
-            return cb(null, newUser);
+            return done(null, newUser);
           }
         } catch (error) {
-          return cb(error, null);
+          return done(error, null);
         }
     }
   )
