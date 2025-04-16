@@ -42,10 +42,21 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session()); 
 
-// Routes
+// home route
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+// Google authentication routes
+app.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['profile'] })
+);
+
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login', successRedirect: '/profile' })
+);
 
 // routes
 app.use('/login', loginRoute);
