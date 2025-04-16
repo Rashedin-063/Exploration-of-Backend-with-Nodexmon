@@ -1,0 +1,20 @@
+<%-include('layout/header')%>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 78vh;
+    flex-direction: column;
+  "
+>
+  <h1>Register a New Account</h1>
+  <%-include('layout/form', { action: '/register', buttonText: 'Register' })%>
+  <p>
+    Already have an account?
+    <a href="/login" style="color: rebeccapurple; text-decoration: none"
+      >Login here</a
+    >.
+  </p>
+</div>
+<%-include('layout/footer')%>

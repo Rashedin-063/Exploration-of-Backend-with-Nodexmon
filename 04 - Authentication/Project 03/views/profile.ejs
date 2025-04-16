@@ -1,0 +1,32 @@
+<%-include('layout/header')%>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 78vh;
+    flex-direction: column;
+  "
+>
+ 
+  <% if (user) { %>
+  <div style="text-align: center;">
+     <h2>Welcome to the profile page</h2>
+    <h1>Hello, <%= user.userName %>!</h1>
+  </div>
+<% } else { %>
+  <div style="text-align: center;">
+    <h2>Please log in to view your profile.</h2>
+    <a href="/login">
+      <button style="padding: 10px 30px; font-size: 16px; border-radius: 1rem; background-color: rebeccapurple; color: white; cursor: pointer;">Log In</button>
+    </a>
+  </div>
+<% } %>
+</div>
+
+
+
+
+<%-include('layout/footer')%>
+</div>
+
