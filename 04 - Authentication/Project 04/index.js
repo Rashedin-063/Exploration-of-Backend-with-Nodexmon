@@ -24,6 +24,50 @@ app.get('/', (req, res) => {
   `);
 });
 
+// Error handling middleware
+app.use((req, res, next) => {
+  res.status(404).send(`
+    <html>
+      <head>
+        <style>
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>404 - Page Not Found</h1>
+      </body>
+    </html>
+  `);
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send(`
+    <html>
+      <head>
+        <style>
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+          }
+        </style>
+      </head>
+      <body>
+        <h1>500 - Internal Server Error</h1>
+      </body>
+    </html>
+  `);
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
