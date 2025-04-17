@@ -32,4 +32,5 @@
      - Project 1 ---> Passport local strategy session base
      - Project 2 ---> Project 1 practice
      - Project 3 ---> Passport Google OAuth20 session
+     - Project 4 ---> Token Based Authentication - Passport, JWT
        
