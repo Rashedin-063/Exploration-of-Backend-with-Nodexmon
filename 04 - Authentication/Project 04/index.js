@@ -8,60 +8,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route
 app.get('/', (req, res) => {
-  res.send(`
-    <html>
-      <head>
-        <link rel="stylesheet" href="/style.css">
-      </head>
-      <body>
-        <h1>Welcome to the Home Page</h1>
-      </body>
-    </html>
-  `);
+  res.sendFile(path.join(__dirname, 'views', 'home.html'));
 });
 
 // Error handling middleware
 app.use((req, res, next) => {
-  res.status(404).send(`
-    <html>
-      <head>
-        <style>
-          body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>404 - Page Not Found</h1>
-      </body>
-    </html>
-  `);
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send(`
-    <html>
-      <head>
-        <style>
-          body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-          }
-        </style>
-      </head>
-      <body>
-        <h1>500 - Internal Server Error</h1>
-      </body>
-    </html>
-  `);
+  res.status(500).sendFile(path.join(__dirname, 'views', '500.html'));
 });
 
 // Start the server
