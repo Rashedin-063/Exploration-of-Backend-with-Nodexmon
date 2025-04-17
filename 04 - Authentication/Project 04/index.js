@@ -1,7 +1,21 @@
+require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+
+// Middlewares
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// routes
+const authRoute = require('./routes/auth.route');
+
+
+app.use('/api/auth', authRoute);
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
