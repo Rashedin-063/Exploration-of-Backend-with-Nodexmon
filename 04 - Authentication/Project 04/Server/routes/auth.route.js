@@ -1,15 +1,10 @@
 const express = require('express');
+const { getRegisterPage, registerUser } = require('../controllers/register.controller');
 const router = express.Router();
 
-router.get('/register', (req, res) => {
-  res.status(200).json({ message: 'Register page' });
-});
+router.get('/register', getRegisterPage);
 
-router.post('/register', (req, res) => { 
-  const { username, password } = req.body;
-  // Here you would normally save the user to the database
-  res.status(201).json({ message: 'User registered successfully' });
-})
+router.post('/register', registerUser)
 
 
 // Login route
