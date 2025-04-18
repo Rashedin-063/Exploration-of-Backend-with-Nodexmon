@@ -9,25 +9,31 @@ const getRegisterPage = (req, res) => {
 const registerUser = async (req, res) => {
   const { username, password } = req.body;
 
-  const existingUser = await User.findOne({ username });
-  if (existingUser) {
-    return res.status(400).json({ message: 'Username already exists' });
-  }
+ try {
+   const existingUser = await User.findOne({ username });
+   if (existingUser) {
+     return res.status(400).json({ message: 'Username already exists' });
+   }
 
-  const newUser = new User({
-    username,
-    password: await bcrypt.hash(password, saltRounds),
-  });
+   const newUser = new User({
+     username,
+     password: await bcrypt.hash(password, saltRounds),
+   });
 
-  await newUser.save();
+   await newUser.save();
 
-  res
-    .status(201)
-    .json({
-      success: true,
-      message: 'User registered successfully',
-      data: newUser,
-    });
+   res.status(201).json({
+     success: true,
+     message: 'User registered successfully',
+     data: newUser,
+   });
+ } catch (error) {
+  res.status(500).json({
+     success: false,
+     message: 'Server error',
+     error: error.message,
+   });
+ }
 };
 
 module.exports = {
