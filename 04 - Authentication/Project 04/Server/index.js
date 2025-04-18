@@ -13,9 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 const authRoute = require('./routes/auth.route');
+const profileRoute = require('./routes/profile.route');
 
 
 app.use('/api/auth', authRoute);
+app.use('/api/profile', profileRoute);
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
