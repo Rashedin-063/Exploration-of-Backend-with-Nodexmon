@@ -20,16 +20,19 @@ const loginUser = async(req, res) => {
         return res.status(400).json({ message: 'Invalid password' });
       } else {
 
-        const token = jwt.sign(
-          { id: user._id, username: user.username },
-          process.env.SECRET_KEY,
-          { expiresIn: '1d' }
-        );
+          const payload = {
+            id: user._id,
+            username: user.username,
+          };
+
+       const token = jwt.sign(payload, process.env.SECRET_KEY, {
+         expiresIn: '2d',
+       });
 
         res.status(200).json({
           success: true,
           message: 'User logged in successfully',
-          token: "Bearer " + token,
+          token: 'Bearer ' + token,
           data: user,
         });
       }

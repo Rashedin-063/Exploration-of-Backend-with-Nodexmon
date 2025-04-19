@@ -12,7 +12,13 @@ router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   function (req, res) {
-    res.send(req.user.profile);
+    return res.status(200).send({
+      success: true,
+      user: {
+        id: req.user._id,
+        username: req.user.username,
+      },
+    });
   }
 );
 
