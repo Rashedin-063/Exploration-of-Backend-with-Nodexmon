@@ -19,6 +19,7 @@
      - Project 3 --> REST API without Database
      - Project 4 --> REST API with Database
      - Project 5 --> Server Side Validation with express-validator
+     - Project 6 --> Server Side Validation with Joy
 
 - MongoDB & Mongoose
      - Lesson 1 --> Connection to MongoDB
