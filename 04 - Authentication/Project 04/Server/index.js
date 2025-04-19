@@ -1,7 +1,9 @@
 require('dotenv').config();
 require('./config/dbConnect')
+require('./config/passport');
 const express = require('express');
 const cors = require('cors');
+const passport = require('passport');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,9 +13,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
 
-
-// database connection
 
 
 // routes
