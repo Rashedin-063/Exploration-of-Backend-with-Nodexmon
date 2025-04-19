@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,13 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+   useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+        navigate('/profile')
+        }
+      }, [navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

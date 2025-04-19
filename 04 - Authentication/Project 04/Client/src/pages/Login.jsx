@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -10,7 +10,16 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+
   };
+
+   useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+      navigate('/profile')
+      }
+    }, [navigate])
   
   const handleSubmit = async (e) => {
     e.preventDefault();
