@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/login.styles.css" />
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form onsubmit="handleLogin(event)">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      function handleLogin(event) {
+        event.preventDefault();
+        alert('Login form submitted!');
+      }
+    </script>
+  </body>
+</html>
