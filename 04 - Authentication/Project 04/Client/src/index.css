@@ -5,12 +5,7 @@
   color-scheme: light dark;
   color: rgba(42, 41, 41, 0.87);
   background-color: #fff9bb;
-
   width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
 }
 
 a {
@@ -48,6 +43,14 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.outlet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 7vh;
 }
 
 .navbar {

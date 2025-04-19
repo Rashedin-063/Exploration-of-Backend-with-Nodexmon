@@ -9,6 +9,8 @@ const getRegisterPage = (req, res) => {
 const registerUser = async (req, res) => {
   const { username, password } = req.body;
 
+
+
  try {
    const existingUser = await User.findOne({ username });
    if (existingUser) {
@@ -33,7 +35,9 @@ const registerUser = async (req, res) => {
      message: 'Server error',
      error: error.message,
    });
- }
+  }
+  
+
 };
 
 module.exports = {
