@@ -1,19 +1,18 @@
-import '../styles/footer.styles.css';
+import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='footer'>
+    <footer style={{ backgroundColor: '#f8f9fa', paddingTop: '20px', paddingBottom: '11px', textAlign: 'center', borderTop: '1px solid #ddd' }}>
+      <p>&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
       <p>
-        &copy; {new Date().getFullYear()} Your Website. All rights reserved.
+        <a href="/privacy-policy" style={{ textDecoration: 'none', color: '#007bff' }}>Privacy Policy</a> | 
+        <a href="/terms-of-service" style={{ textDecoration: 'none', color: '#007bff' }}>Terms of Service</a>
       </p>
       <p>
-        <a href='/terms' className='footer-link'>
-          Terms of Service
-        </a>{' '}
-        |
-        <a href='/privacy' className='footer-link'>
-          Privacy Policy
-        </a>
+        Follow us: 
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Twitter</a> | 
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Facebook</a> | 
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Instagram</a>
       </p>
     </footer>
   );
