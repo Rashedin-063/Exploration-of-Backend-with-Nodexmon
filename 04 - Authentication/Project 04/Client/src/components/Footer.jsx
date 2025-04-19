@@ -2,17 +2,71 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#f8f9fa', paddingTop: '20px', paddingBottom: '11px', textAlign: 'center', borderTop: '1px solid #ddd' }}>
-      <p>&copy; {new Date().getFullYear()} Your Company Name. All rights reserved.</p>
+    <footer
+      style={{
+        // // paddingTop: '20px',
+        // paddingBottom: '11px',
+        textAlign: 'center',
+        borderTop: '1px solid #000',
+        width: '100vw',
+      }}
+    >
       <p>
-        <a href="/privacy-policy" style={{ textDecoration: 'none', color: '#007bff' }}>Privacy Policy</a> | 
-        <a href="/terms-of-service" style={{ textDecoration: 'none', color: '#007bff' }}>Terms of Service</a>
+        &copy; {new Date().getFullYear()} Your Company Name. All rights
+        reserved.
       </p>
       <p>
-        Follow us: 
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Twitter</a> | 
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Facebook</a> | 
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#007bff' }}>Instagram</a>
+        <a
+          href='/privacy-policy'
+          style={{ textDecoration: 'none', color: '#007bff' }}
+        >
+          Privacy Policy
+        </a>{' '}
+        <span style={{ margin: '0 5px' }}>|</span>
+        <a
+          href='/terms-of-service'
+          style={{ textDecoration: 'none', color: '#007bff' }}
+        >
+          Terms of Service
+        </a>
+      </p>
+      <p>
+        Follow us:
+        <span>
+          <a
+            href='https://twitter.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{
+              textDecoration: 'none',
+              color: '#007bff',
+              marginLeft: '1rem',
+            }}
+          >
+            Twitter
+          </a>{' '}
+          <span style={{ margin: '0 5px' }}>|</span>
+          <a
+            href='https://facebook.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{
+              textDecoration: 'none',
+              color: '#007bff',
+            }}
+          >
+            Facebook
+          </a>{' '}
+          <span style={{ margin: '0 5px' }}>|</span>
+          <a
+            href='https://instagram.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{ textDecoration: 'none', color: '#007bff' }}
+          >
+            Instagram
+          </a>
+        </span>
       </p>
     </footer>
   );

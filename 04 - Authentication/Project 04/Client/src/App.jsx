@@ -7,7 +7,7 @@ const App = () => {
 
       <div >
         <Navbar />
-        <div>
+        <div style={{ minHeight: '77vh' }}>
           <Outlet/>
        </div>
        <Footer/>
