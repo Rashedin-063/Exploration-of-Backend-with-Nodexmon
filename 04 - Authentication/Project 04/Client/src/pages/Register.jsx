@@ -1,9 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
+  const [isFocused, setIsFocused] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,15 +15,15 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-   console.log('Form submitted:', formData);
     
     try {
       const response = await axios.post(
         'http://localhost:3000/api/auth/register',
         formData
       );
-      console.log('Registration successful:', response.data);
+      if (response.status === 201) { 
+        navigate('/login');
+      }
     } catch (error) {
       console.error('Error during registration:', error);
     }
@@ -36,6 +39,7 @@ const Register = () => {
       alignItems: 'center',
       justifyContent: 'center',
       height: '80%',
+      color: '#333',
     },
     title: {
       fontSize: '34px',
@@ -62,6 +66,17 @@ const Register = () => {
       borderRadius: '4px',
       backgroundColor: '#f9f9f9',
       height: '30px',
+      ...(isFocused && {
+        outline: 'none',
+        border: '1px solid #007bff',
+        backgroundColor: '#000',
+        color: '#fff',
+      }),
+    },
+    inputFocus: {
+      outline: 'none',
+      border: '1px solid #007bff',
+      backgroundColor: '#000',
     },
     button: {
       padding: '10px',
@@ -90,6 +105,8 @@ const Register = () => {
             placeholder='Username'
             value={formData.username}
             onChange={handleChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <input
             style={styles.input}
@@ -98,6 +115,8 @@ const Register = () => {
             placeholder='Password'
             value={formData.password}
             onChange={handleChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <button
             style={styles.button}
