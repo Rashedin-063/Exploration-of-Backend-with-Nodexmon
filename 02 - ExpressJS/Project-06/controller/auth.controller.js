@@ -19,34 +19,6 @@ const registerUser = (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // if (!username || !email || !password) {
-    //   return res
-    //     .status(400)
-    //     .json({ message: 'Username, email and password are required' });
-    // }
-    // Simulate user registration logic
-
-    // create a schema
-    const schema = Joi.object({
-      username: Joi.string().min(3).max(15).required(),
-      email: Joi.string().email().required(),
-      password: Joi.string().min(6).max(8).required(),
-    });
-
-    // validate the data using schema
-    const { error } = schema.validate(req.body, {
-      abortEarly: false,
-      errors: { wrap: { label: '' } },
-    });
-
-    if (error) {
-      const errorList = error.details.map((err) => err.message);
-      res.status(400).json({
-        message: 'invalid input',
-        error: errorList,
-      });
-    }
-
     res.status(201).json({
       message: 'User registered successfully',
       user: {
