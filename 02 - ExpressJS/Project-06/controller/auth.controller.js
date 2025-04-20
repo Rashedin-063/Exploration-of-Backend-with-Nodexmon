@@ -14,10 +14,8 @@ const renderLoginPage = (req, res) => {
   res.sendFile(path.join(__dirname, '../views/login.html'));
 };
 
-
-
 // Mock logic for register
-const register = (req, res) => {
+const registerUser = (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -36,37 +34,39 @@ const register = (req, res) => {
     });
 
     // validate the data using schema
-    const { error } = schema.validate(req.body,
-      { abortEarly: false, errors: {wrap: {label: ''}} });
-    
+    const { error } = schema.validate(req.body, {
+      abortEarly: false,
+      errors: { wrap: { label: '' } },
+    });
+
     if (error) {
-      const errorList = error.details.map(err => err.message)
+      const errorList = error.details.map((err) => err.message);
       res.status(400).json({
         message: 'invalid input',
-        error: errorList
+        error: errorList,
       });
     }
 
     res.status(201).json({
       message: 'User registered successfully',
       user: {
-        username, email
-      }
+        username,
+        email,
+      },
     });
   } catch (error) {
-     res.status(500).json({
-       success: false,
-       message: error.message ? error.message : 'Something went wrong',
-     });
+    res.status(500).json({
+      success: false,
+      message: error.message ? error.message : 'Something went wrong',
+    });
   }
 };
 
 // Mock logic for login
-const login = (req, res) => {
-try {
+const loginUser = (req, res) => {
+  try {
     const { username, password } = req.body;
     const schema = Joi.object({
-      username: Joi.string().min(3).max(15).required(),
       email: Joi.string().email().required(),
       password: Joi.string().min(6).max(8).required(),
     });
@@ -88,24 +88,17 @@ try {
     res
       .status(200)
       .json({ message: 'User logged in successfully', user: { username } });
-} catch (error) {
-  res.status(500).json({
-    success: false,
-    message: error.message ? error.message : 'Something went wrong'
-  })
-}
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message ? error.message : 'Something went wrong',
+    });
+  }
 };
 
-// Register page route
-router.get('/register', renderRegisterPage);
-
-// Login page route
-router.get('/login', renderLoginPage);
-
-// Register route
-router.post('/register', register);
-
-// Login route
-router.post('/login', login);
-
-module.exports = router;
+module.exports = {
+  renderRegisterPage,
+  renderLoginPage,
+  registerUser,
+  loginUser,
+};

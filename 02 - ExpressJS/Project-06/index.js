@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 const path = require('path')
-const authRouter = require('./controller/auth.controller')
+const authRouter = require('./router/auth.routes')
 
 const PORT = process.env.PORT || 3000;
 
