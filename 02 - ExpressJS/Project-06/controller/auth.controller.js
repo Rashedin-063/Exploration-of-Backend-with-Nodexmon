@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const result = require('../validation/userValidation');
+const Joi = require('joi');
 
 const router = express.Router();
 
@@ -14,24 +14,44 @@ const renderLoginPage = (req, res) => {
   res.sendFile(path.join(__dirname, '../views/login.html'));
 };
 
+
+
 // Mock logic for register
 const register = (req, res) => {
   try {
     const { username, email, password } = req.body;
+
+    // if (!username || !email || !password) {
+    //   return res
+    //     .status(400)
+    //     .json({ message: 'Username, email and password are required' });
+    // }
+    // Simulate user registration logic
+
+    // create a schema
+    const schema = Joi.object({
+      username: Joi.string().min(3).max(15).required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(6).max(8).required(),
+    });
+
+    // validate the data using schema
+    const { error } = schema.validate(req.body, { abortEarly: false });
     
-      // if (!username || !email || !password) {
-      //   return res
-      //     .status(400)
-      //     .json({ message: 'Username, email and password are required' });
-      // }
-      // Simulate user registration logic
-      res
-        .status(201)
-        .json({
-          message: 'User registered successfully',
-          // user: { username, email },
-          result
-        });
+    if (error) {
+      const errorList = error.details.map(err => err.message)
+      res.status(400).json({
+        message: 'invalid input',
+        error: errorList
+      });
+    }
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      user: {
+        username, email
+      }
+    });
   } catch (error) {
      res.status(500).json({
        success: false,
