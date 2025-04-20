@@ -17,13 +17,17 @@ const renderLoginPage = (req, res) => {
 // Mock logic for register
 const registerUser = (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, dob, languages, email, password, confirmPassword  } = req.body;
 
     res.status(201).json({
       message: 'User registered successfully',
       user: {
         username,
+        dob,
+        languages,
         email,
+        password,
+        confirmPassword
       },
     });
   } catch (error) {
