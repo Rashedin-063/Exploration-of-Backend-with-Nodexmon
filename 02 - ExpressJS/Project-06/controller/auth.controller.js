@@ -36,7 +36,8 @@ const register = (req, res) => {
     });
 
     // validate the data using schema
-    const { error } = schema.validate(req.body, { abortEarly: false });
+    const { error } = schema.validate(req.body,
+      { abortEarly: false, errors: {wrap: {label: ''}} });
     
     if (error) {
       const errorList = error.details.map(err => err.message)
@@ -64,10 +65,24 @@ const register = (req, res) => {
 const login = (req, res) => {
 try {
     const { username, password } = req.body;
-    if (!username || !password) {
-      return res
-        .status(400)
-        .json({ message: 'Username and password are required' });
+    const schema = Joi.object({
+      username: Joi.string().min(3).max(15).required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().min(6).max(8).required(),
+    });
+
+    // validate the data using schema
+    const { error } = schema.validate(req.body, {
+      abortEarly: false,
+      errors: { wrap: { label: '' } },
+    });
+
+    if (error) {
+      const errorList = error.details.map((err) => err.message);
+      res.status(400).json({
+        message: 'invalid input',
+        error: errorList,
+      });
     }
     // Simulate user login logic
     res
