@@ -1,6 +1,7 @@
 const express = require('express');
 const { renderRegisterPage, renderLoginPage, registerUser, loginUser } = require('../controller/auth.controller');
-const {registerValidation, loginValidation} = require('../validation/userValidation')
+const {registerValidation, loginValidation} = require('../validation/userValidation');
+const { registerSchema, loginSchema } = require('../validation/schemas');
 
 const router = express.Router();
 
@@ -12,10 +13,10 @@ router.get('/register', renderRegisterPage);
 router.get('/login', renderLoginPage);
 
 // Register route
-router.post('/register', registerValidation, registerUser);
+router.post('/register', registerValidation(registerSchema), registerUser);
 
 // Login route
-router.post('/login', loginValidation, loginUser);
+router.post('/login', loginValidation(loginSchema), loginUser);
 
 
 module.exports = router;
